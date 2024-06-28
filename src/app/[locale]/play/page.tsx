@@ -2,10 +2,13 @@ import Button from '@/components/Button';
 import { FaPlay } from 'react-icons/fa';
 import { FaArrowTurnDown } from 'react-icons/fa6';
 import { GiMusicalNotes } from 'react-icons/gi';
+import { usePlayController } from './usePlayController';
 
 interface PlayProps {}
 
 const Play: React.FC<PlayProps> = ({}) => {
+  const {} = usePlayController();
+
   return (
     <div className="h-screen flex justify-center items-center gap-3">
       <Button>
