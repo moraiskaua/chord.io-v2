@@ -1,8 +1,9 @@
 import { notesPath } from '@/constants/notes';
+import { Chord } from '@/entities/Chord';
 import { useEffect, useState } from 'react';
 import * as Tone from 'tone';
 
-export const useAudioPlayerController = () => {
+export const useAudioPlayerController = (chord: Chord) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [sampler, setSampler] = useState<Tone.Sampler | null>(null);
 
@@ -35,9 +36,9 @@ export const useAudioPlayerController = () => {
     };
   }, []);
 
-  const handlePlayChord = (notes: string[]): void => {
+  const handlePlayChord = (): void => {
     if (sampler) {
-      notes.forEach((note, index) => {
+      chord.notes.forEach((note, index) => {
         setTimeout(() => {
           sampler.triggerAttackRelease(note, 1);
         }, index * 40);
@@ -45,9 +46,9 @@ export const useAudioPlayerController = () => {
     }
   };
 
-  const handlePlayChordArpeggiated = (notes: string[]): void => {
+  const handlePlayChordArpeggiated = (): void => {
     if (sampler) {
-      notes.forEach((note, index) => {
+      chord.notes.forEach((note, index) => {
         setTimeout(() => {
           sampler.triggerAttackRelease(note, 1);
         }, index * 400);

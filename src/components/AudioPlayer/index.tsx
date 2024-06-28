@@ -14,23 +14,17 @@ interface AudioPlayerProps {
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ chord }) => {
   const { isLoading, handlePlayChord, handlePlayChordArpeggiated } =
-    useAudioPlayerController();
+    useAudioPlayerController(chord);
 
   return (
     <>
       {isLoading && <Loading />}
 
       <div className="flex justify-center items-center gap-3">
-        <Button
-          disabled={isLoading}
-          onClick={() => handlePlayChord(chord.notes)}
-        >
+        <Button disabled={isLoading} onClick={handlePlayChord}>
           <FaPlay className="size-16" />
         </Button>
-        <Button
-          disabled={isLoading}
-          onClick={() => handlePlayChordArpeggiated(chord.notes)}
-        >
+        <Button disabled={isLoading} onClick={handlePlayChordArpeggiated}>
           <GiMusicalNotes className="size-16" />
         </Button>
         <Button disabled={isLoading} variant="secondary">
