@@ -3,11 +3,19 @@ import { FaPlay } from 'react-icons/fa';
 import { FaArrowTurnDown } from 'react-icons/fa6';
 import { GiMusicalNotes } from 'react-icons/gi';
 import { usePlayController } from './usePlayController';
+import { chordService } from '@/services/chordService';
+import { useParams } from 'next/navigation';
 
-interface PlayProps {}
+interface PlayProps {
+  searchParams: {
+    difficulty: string;
+  };
+}
 
-const Play: React.FC<PlayProps> = ({}) => {
-  const {} = usePlayController();
+const Play: React.FC<PlayProps> = async ({ searchParams }) => {
+  const { chord } = await usePlayController(searchParams.difficulty);
+
+  console.log(chord);
 
   return (
     <div className="h-screen flex justify-center items-center gap-3">

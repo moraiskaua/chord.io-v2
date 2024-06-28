@@ -1,7 +1,11 @@
-import axios from 'axios';
+import { httpClient } from '../httpClient';
 
 export const get = async (difficulty: string) => {
-  const { data } = await axios.get(`/daily-chord?difficulty=${difficulty}`);
+  const { data } = await httpClient.get(`/daily-chord`, {
+    params: {
+      difficulty,
+    },
+  });
 
   return data;
 };
