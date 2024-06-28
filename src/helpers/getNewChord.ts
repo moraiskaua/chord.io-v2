@@ -1,17 +1,30 @@
-import { otherNotes, tonicNotes } from '@/constants/notes';
+import { tonicNotes, otherNotes } from '@/constants/notes';
+import { chordIntervals } from '@/types/ChordType';
+import {
+  DifficultyLevel,
+  easyChordTypes,
+  hardChordTypes,
+} from '@/types/DifficultyType';
 
-export const getNewChord = () => {
-  const chordNotes = [];
-  const chordType = Math.random() < 0.5 ? '' : 'm';
+export const getNewChord = (difficulty: DifficultyLevel) => {
+  const chordTypes =
+    difficulty === DifficultyLevel.EASY ? easyChordTypes : hardChordTypes;
+  const chordType = chordTypes[Math.floor(Math.random() * chordTypes.length)];
   const tonicIndex = Math.floor(Math.random() * tonicNotes.length);
+  const tonicNote = tonicNotes[tonicIndex].replace('4', '');
 
-  const tonicNote = otherNotes[tonicIndex].replace('4', ''); // Tônica
-  const thirdNoteIndex = (tonicIndex + (chordType === 'm' ? 3 : 4)) % 12; // Terça maior/menor
-  const fifthNoteIndex = (tonicIndex + 7) % 12; // Quinta justa/menor
+  const intervals = chordIntervals[chordType];
 
-  chordNotes.push(otherNotes[tonicIndex]);
-  chordNotes.push(otherNotes[thirdNoteIndex]);
-  chordNotes.push(otherNotes[fifthNoteIndex]);
+  if (!intervals) {
+    throw new Error(`Intervals for chord type ${chordType} are undefined`);
+  }
 
-  return { name: tonicNote, notes: chordNotes };
+  const chordNotes = intervals.map(
+    interval => otherNotes[(tonicIndex + interval) % otherNotes.length],
+  );
+
+  return {
+    name: `${tonicNote}${chordType}`,
+    notes: chordNotes,
+  };
 };
