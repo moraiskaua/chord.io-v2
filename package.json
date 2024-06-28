@@ -19,6 +19,7 @@
     "react-dom": "^19.0.0-rc-e02baf6c92-20240627",
     "react-icons": "^5.2.1",
     "tailwind-merge": "^2.3.0",
+    "tone": "^15.0.4",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
