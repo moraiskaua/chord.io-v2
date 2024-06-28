@@ -1,4 +1,9 @@
 {
+  "difficulty": {
+    "title": "Choose difficulty:",
+    "easy": "easy",
+    "hard": "hard"
+  },
   "welcomeModal": {
     "title": "Welcome to CHORD.IO!",
     "message": "your goal here is to strike the chord of the day."

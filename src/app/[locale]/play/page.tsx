@@ -12,6 +12,17 @@ const Play: React.FC<PlayProps> = async ({ searchParams }) => {
 
   return (
     <div className="h-screen flex justify-center items-center gap-3">
+      <div className="flex flex-col gap-3 text-white bg-tertiary p-3">
+        <span>Nome do acorde: {chord.name}</span>
+
+        <span>Notas:</span>
+        <ul>
+          {chord.notes.map((note: string) => (
+            <li>[{note}]</li>
+          ))}
+        </ul>
+      </div>
+
       <AudioPlayer chord={chord} />
     </div>
   );
