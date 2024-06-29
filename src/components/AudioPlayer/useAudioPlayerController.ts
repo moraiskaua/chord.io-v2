@@ -36,7 +36,7 @@ export const useAudioPlayerController = (chord: Chord) => {
         sampler.dispose();
       }
     };
-  }, [sampler, instrument]);
+  }, [instrument]);
 
   const handlePlayChord = (): void => {
     if (sampler) {
