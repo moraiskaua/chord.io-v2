@@ -11,7 +11,7 @@ export const getNewChord = (difficulty: DifficultyLevel) => {
     difficulty === DifficultyLevel.EASY ? easyChordTypes : hardChordTypes;
   const chordType = chordTypes[Math.floor(Math.random() * chordTypes.length)];
   const tonicIndex = Math.floor(Math.random() * tonicNotes.length);
-  const tonicNote = tonicNotes[tonicIndex].replace('4', '');
+  const tonicNote = tonicNotes[tonicIndex].replace('3', '');
 
   const intervals = chordIntervals[chordType];
 

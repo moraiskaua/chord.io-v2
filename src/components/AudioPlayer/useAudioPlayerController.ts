@@ -1,11 +1,13 @@
 import { notesPath } from '@/constants/notes';
 import { Chord } from '@/entities/Chord';
+import { useInstrumentStore } from '@/stores/instrumentStore';
 import { useEffect, useState } from 'react';
 import * as Tone from 'tone';
 
 export const useAudioPlayerController = (chord: Chord) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [sampler, setSampler] = useState<Tone.Sampler | null>(null);
+  const instrument = useInstrumentStore(state => state.instrument);
 
   useEffect(() => {
     const initializeSampler = () => {
@@ -20,7 +22,7 @@ export const useAudioPlayerController = (chord: Chord) => {
 
       const sampler = new Tone.Sampler({
         urls: notes,
-        baseUrl: '/assets/piano/',
+        baseUrl: `/assets/${instrument}/`,
         onload: () => setIsLoading(false),
       }).toDestination();
 
@@ -34,7 +36,7 @@ export const useAudioPlayerController = (chord: Chord) => {
         sampler.dispose();
       }
     };
-  }, []);
+  }, [instrument]);
 
   const handlePlayChord = (): void => {
     if (sampler) {

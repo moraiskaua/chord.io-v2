@@ -6,7 +6,7 @@ import { FaPlay } from 'react-icons/fa';
 import { FaArrowTurnDown } from 'react-icons/fa6';
 import { GiMusicalNotes } from 'react-icons/gi';
 import { useAudioPlayerController } from './useAudioPlayerController';
-import Loading from '@/app/[locale]/play/loading';
+import Loading from '@/components/loading';
 
 interface AudioPlayerProps {
   chord: Chord;

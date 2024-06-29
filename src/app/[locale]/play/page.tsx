@@ -18,7 +18,7 @@ const Play: React.FC<PlayProps> = async ({ searchParams }) => {
         <span>Notas:</span>
         <ul>
           {chord.notes.map((note: string) => (
-            <li>[{note}]</li>
+            <li key={note}>[{note}]</li>
           ))}
         </ul>
       </div>
